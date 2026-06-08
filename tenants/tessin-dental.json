@@ -1,6 +1,6 @@
 {
   "slug": "tessin-dental",
-  "customDomain": "",
+  "customDomain": "tessindentalsthlm.se",
   "createdAt": "2026-06-08T00:00:00.000Z",
   "clinicName": "Tessin Dental",
   "clinicCity": "Stockholm",
@@ -28,8 +28,8 @@
     }
   },
   "announcementBadge": "Nypatient-erbjudande · Premiumtandvård på Östermalm · Begränsat antal platser",
-  "heroHeadline": "Premiumtandvård på Östermalm – din första undersökning för 490 kr",
-  "heroSubheadline": "Komplett undersökning, röntgen, tandstensborttagning och puts – allt i ett besök hos en av Stockholms mest moderna tandkliniker. Ordinarie pris 2 380 kr, nu 490 kr för nya patienter.",
+  "heroHeadline": "Renare, fräschare tänder och full koll på din munhälsa – till ett kanonpris",
+  "heroSubheadline": "Komplett undersökning, digital röntgen, tandstensborttagning och puts – allt på ett besök. Renare, fräschare tänder och svar på exakt hur din mun mår, utan gissningar – hos en av Stockholms mest moderna tandkliniker.",
   "originalPrice": "2 380 kr",
   "discountedPrice": "490 kr",
   "savings": "1 890 kr",
@@ -41,11 +41,11 @@
   "trustBadge": "En av  Östermalms högst betygsatta tandkliniker på Google",
   "trustBadgeElfsightId": "60f8d4bb-57e5-4884-8d2f-6044e59f5dda",
   "heroImageUrl": "/tenants/tessin-dental/1780920771978-Untitled_design__67_.jpg",
-  "includedTitle": "Allt detta ingår i ditt första besök",
+  "includedTitle": "Här är allt du får när du tar del av erbjudandet idag",
   "includedItems": [
     {
       "title": "Komplett undersökning",
-      "description": "En grundlig genomgång av samtliga tänder, tandkött och bett – vi kartlägger din munhälsa noggrant och diskuterar eventuella åtgärder med dig.",
+      "description": "En grundlig genomgång av samtliga tänder, tandkött och bett – du går härifrån och vet exakt hur din mun mår — inga gissningar.",
       "value": ""
     },
     {

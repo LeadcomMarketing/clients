@@ -6,10 +6,18 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Tell Next.js to bundle the tenants/ and leads/ directories into every
-  // serverless function so fs.readFileSync can access them on Vercel at runtime.
+  // Bundle tenants/ into every serverless function so fs.readFileSync works on Vercel.
+  // Listed per-route because Turbopack doesn't support glob keys like "/**".
   outputFileTracingIncludes: {
-    "/**": ["./tenants/**", "./leads/**"],
+    "/":                         ["./tenants/**/*"],
+    "/[tenant]":                 ["./tenants/**/*"],
+    "/admin":                    ["./tenants/**/*"],
+    "/admin/[slug]":             ["./tenants/**/*"],
+    "/admin/new":                ["./tenants/**/*"],
+    "/api/tenants":              ["./tenants/**/*"],
+    "/api/tenants/[slug]":       ["./tenants/**/*"],
+    "/api/tenants/[slug]/leads": ["./tenants/**/*"],
+    "/api/tenants/[slug]/upload":["./tenants/**/*"],
   },
 }
 
