@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
-// ── Constants ─────────────────────────────────────────────────────
 const ADMIN_COOKIE = "lc_admin"
 
-// Domain map from env var — fully Edge-compatible, no file I/O, no crypto.
-// Set TENANT_DOMAINS in Vercel: '{"tessindental.se":"tessin-dental"}'
 const DOMAINS: Record<string, string> = (() => {
   try {
     return JSON.parse(process.env.TENANT_DOMAINS ?? "{}") as Record<string, string>
@@ -19,11 +16,6 @@ function isPublicPath(pathname: string) {
   return PUBLIC_PATHS.some((p) => pathname.startsWith(p))
 }
 
-// ── Proxy (replaces deprecated middleware.ts in Next.js 16) ───────
-// Fully synchronous — no crypto, no async.
-// Cookie PRESENCE checked here for fast redirect UX.
-// Full HMAC token verification happens in app/admin/layout.tsx (Node.js).
-
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
   const bareHost = (req.headers.get("host") ?? "").split(":")[0]
@@ -36,7 +28,7 @@ export function proxy(req: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  // 2. Admin: redirect to login if no cookie present
+  // 2. Admin auth guard
   if (pathname.startsWith("/admin") && !isPublicPath(pathname)) {
     const token = req.cookies.get(ADMIN_COOKIE)?.value
     if (!token) {
@@ -49,6 +41,4 @@ export function proxy(req: NextRequest) {
   return NextResponse.next()
 }
 
-export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.*|apple-icon.*|public/).*)",],
-}
+// No matcher config — proxy runs on all requests by default in Next.js 16
