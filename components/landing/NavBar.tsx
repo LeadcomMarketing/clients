@@ -19,7 +19,7 @@ export default function NavBar({ config }: { config: TenantConfig }) {
           {config.clinicName}
         </span>
       )}
-      <CtaButton size="default" label="Boka tid →" />
+      <CtaButton size="default" label={config.ctaLabels?.nav || "Boka tid →"} />
     </nav>
   )
 }

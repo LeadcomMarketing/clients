@@ -8,8 +8,13 @@ export default function NoObligationSection({ config }: { config: TenantConfig }
         <div className="grid md:grid-cols-2 gap-10 items-center">
 
           <div className="relative rounded-[2rem] overflow-hidden aspect-square md:aspect-auto md:h-80 shadow-[0_16px_48px_rgba(0,0,0,0.12)]">
-            {config.heroImageUrl ? (
-              <Image src={config.heroImageUrl} alt={config.clinicName} fill className="object-cover object-center" />
+            {(config.noObligationImageUrl || config.heroImageUrl) ? (
+              <Image
+                src={config.noObligationImageUrl || config.heroImageUrl}
+                alt={config.clinicName}
+                fill
+                className="object-cover object-center"
+              />
             ) : (
               <div className="w-full h-full" style={{ backgroundColor: "var(--brand-light, #EEF2F7)" }} />
             )}

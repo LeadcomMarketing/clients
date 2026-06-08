@@ -24,7 +24,7 @@ export default function StickyMobileCta() {
           </p>
           <p className="text-[10px] mt-0.5" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
         </div>
-        <CtaButton label="Boka nu →" className="flex-shrink-0 !text-sm !px-5 !py-3" />
+        <CtaButton label={config.ctaLabels?.sticky || "Boka nu →"} className="flex-shrink-0 !text-sm !px-5 !py-3" />
       </div>
     </div>
   )

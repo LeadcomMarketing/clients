@@ -88,7 +88,7 @@ export default function ReviewsSection({ config }: { config: TenantConfig }) {
         )}
 
         <div className="flex justify-center">
-          <CtaButton size="lg" />
+          <CtaButton size="lg" label={config.ctaLabels?.afterReviews || config.ctaText} />
         </div>
       </div>
     </section>

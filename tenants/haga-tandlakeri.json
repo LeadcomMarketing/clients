@@ -17,6 +17,7 @@
   "integrations": {
     "elfsightWidgetId": "",
     "facebookPixelId": "",
+    "googlePlaceId": "",
     "makeWebhookUrl": "",
     "leadForm": {
       "headline": "Säkra din plats – fyll i dina uppgifter",
@@ -35,7 +36,16 @@
   "savings": "1 200 kr",
   "ctaText": "Säkra din tid nu – 695 kr",
   "ctaSubtext": "Inga dolda avgifter · Avboka kostnadsfritt",
+  "ctaLabels": {
+    "nav": "Boka tid →",
+    "hero": "Säkra din tid nu – 695 kr",
+    "afterIncluded": "Ja, jag vill ha allt detta – 695 kr",
+    "afterReviews": "Bli nästa nöjda patient →",
+    "bottom": "Boka nu – bara 695 kr",
+    "sticky": "Boka nu →"
+  },
   "trustBadge": "4.8 / 5 av 400+ Google-recensioner",
+  "trustBadgeElfsightId": "",
   "heroImageUrl": "/tenants/haga-tandlakeri/1780667799529-Haga_hj__2___1_.jpg",
   "includedTitle": "Allt detta ingår i ditt första besök",
   "includedItems": [
@@ -106,6 +116,7 @@
       "date": "3 veckor sedan"
     }
   ],
+  "noObligationImageUrl": "",
   "noObligationTitle": "Prova oss utan risk — helt utan förpliktelser",
   "noObligationBody": "Det finns inga dolda kostnader, inga inlåsningskontrakt och ingen press på att fortsätta. Nya patient-erbjudandet finns till för att du ska kunna prova oss och se att du är nöjd — resten bestämmer du.",
   "bottomCtaTitle": "Komplett undersökning med röntgen, 3D-skanning, rengöring & AirFlow®",

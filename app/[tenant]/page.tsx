@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation"
 import { getTenant } from "@/lib/tenants"
+import { fetchGoogleRating } from "@/lib/google-places"
+import type { GoogleRating } from "@/lib/google-places"
 import AnnouncementBar from "@/components/landing/AnnouncementBar"
 import HeroBanner from "@/components/landing/HeroBanner"
 import IncludedSection from "@/components/landing/IncludedSection"
@@ -22,11 +24,16 @@ export default async function TenantPage({ params }: Props) {
   const config = getTenant(tenant)
   if (!config) notFound()
 
+  // Fetch live Google rating (server-side, cached 24h, falls back to null)
+  const googleRating: GoogleRating | null = config.integrations.googlePlaceId
+    ? await fetchGoogleRating(config.integrations.googlePlaceId)
+    : null
+
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
       <AnnouncementBar config={config} />
       <NavBar config={config} />
-      <HeroBanner config={config} />
+      <HeroBanner config={config} googleRating={googleRating} />
       <IncludedSection config={config} />
       <ReviewsSection config={config} />
       <ClinicSection config={config} />

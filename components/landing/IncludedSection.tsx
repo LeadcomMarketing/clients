@@ -68,20 +68,8 @@ export default function IncludedSection({ config }: { config: TenantConfig }) {
           </div>
         </div>
 
-        {/* AirFlow callout */}
-        {(config.airflowTitle || config.airflowBody) && (
-          <div className="mt-10 rounded-[2rem] p-7 md:p-10 shadow-[0_16px_48px_rgba(0,0,0,0.25)]" style={{ backgroundColor: "var(--brand)" }}>
-            <h3 className="text-xl md:text-2xl font-extrabold text-white mb-3 text-balance">
-              {config.airflowTitle}
-            </h3>
-            <p className="leading-relaxed text-sm md:text-base text-white/70">
-              {config.airflowBody}
-            </p>
-          </div>
-        )}
-
-        <div className="flex justify-center mt-10">
-          <CtaButton size="lg" />
+<div className="flex justify-center mt-10">
+          <CtaButton size="lg" label={config.ctaLabels?.afterIncluded || config.ctaText} />
         </div>
       </div>
     </section>

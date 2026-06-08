@@ -53,6 +53,13 @@ export interface TenantConfig {
   integrations: {
     elfsightWidgetId: string
     facebookPixelId: string
+    /**
+     * Google Place ID for this clinic.
+     * When set (and GOOGLE_PLACES_API_KEY is configured), the hero trust badge
+     * shows a live rating fetched from the Places API instead of a static widget.
+     * Find yours at: https://developers.google.com/maps/documentation/places/web-service/place-id
+     */
+    googlePlaceId: string
     /** Make.com (or any) webhook URL. POSTed with lead data on every opt-in. */
     makeWebhookUrl: string
     leadForm: {
@@ -85,9 +92,28 @@ export interface TenantConfig {
   originalPrice: string
   discountedPrice: string
   savings: string
+  /** Global fallback CTA text — used when a specific placement label is empty */
   ctaText: string
   ctaSubtext: string
+  /** Per-placement CTA labels — each can have its own copy angle */
+  ctaLabels: {
+    /** NavBar top-right button */
+    nav: string
+    /** Hero main button — show urgency + price */
+    hero: string
+    /** After the included-items list — commitment angle */
+    afterIncluded: string
+    /** After the reviews — social proof conversion angle */
+    afterReviews: string
+    /** Bottom CTA section — final urgency */
+    bottom: string
+    /** Sticky mobile bar — must be short */
+    sticky: string
+  }
+  /** Text shown in the star-rating pill in the hero. Set empty to hide the badge. */
   trustBadge: string
+  /** When set, renders an Elfsight badge widget instead of the text pill. */
+  trustBadgeElfsightId: string
   heroImageUrl: string
 
   // ── Included items ─────────────────────────────────────────────
@@ -118,6 +144,7 @@ export interface TenantConfig {
   reviews: Review[]
 
   // ── No-obligation ──────────────────────────────────────────────
+  noObligationImageUrl: string
   noObligationTitle: string
   noObligationBody: string
 
@@ -160,6 +187,7 @@ export const EMPTY_TENANT: Omit<TenantConfig, 'slug' | 'createdAt'> = {
   integrations: {
     elfsightWidgetId: '',
     facebookPixelId: '',
+    googlePlaceId: '',
     makeWebhookUrl: '',
     leadForm: {
       headline: 'Säkra din plats – fyll i dina uppgifter',
@@ -178,7 +206,16 @@ export const EMPTY_TENANT: Omit<TenantConfig, 'slug' | 'createdAt'> = {
   savings: '',
   ctaText: 'Säkra din tid nu',
   ctaSubtext: 'Inga dolda avgifter · Avboka kostnadsfritt',
+  ctaLabels: {
+    nav: 'Boka tid →',
+    hero: 'Säkra din tid nu',
+    afterIncluded: 'Ja, jag vill boka detta →',
+    afterReviews: 'Bli nästa nöjda patient →',
+    bottom: 'Boka nu – ta chansen',
+    sticky: 'Boka nu →',
+  },
   trustBadge: '4.8 / 5 av Google-recensioner',
+  trustBadgeElfsightId: '',
   heroImageUrl: '',
   includedTitle: 'Allt detta ingår i ditt första besök',
   includedItems: [],
@@ -196,6 +233,7 @@ export const EMPTY_TENANT: Omit<TenantConfig, 'slug' | 'createdAt'> = {
   reviewsTitle: 'Vad våra patienter säger',
   reviewsSubtitle: '',
   reviews: [],
+  noObligationImageUrl: '',
   noObligationTitle: 'Prova oss utan risk — helt utan förpliktelser',
   noObligationBody: '',
   bottomCtaTitle: '',

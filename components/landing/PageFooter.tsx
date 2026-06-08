@@ -23,9 +23,6 @@ export default function PageFooter({ config }: { config: TenantConfig }) {
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} {config.clinicName}. Alla rättigheter förbehållna.
           </p>
-          <p className="text-xs text-white/25 mt-1">
-            Ordinariepris {config.originalPrice} · Erbjudandepris {config.discountedPrice} · Gäller tills vidare
-          </p>
         </div>
       </div>
     </footer>

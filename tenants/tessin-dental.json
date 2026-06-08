@@ -34,9 +34,13 @@
   "discountedPrice": "490 kr",
   "savings": "1 890 kr",
   "ctaText": "Boka din tid – 490 kr",
-  "ctaSubtext": "Inga dolda avgifter · Avboka kostnadsfritt",
+  "ctaSubtext": "Tidsbegränsat erbjudande · Endast för nya patienter",
+  "ctaLabels": {
+    "bottom": "Boka nu medan erbjudandet finns kvar!"
+  },
   "trustBadge": "En av  Östermalms högst betygsatta tandkliniker på Google",
-  "heroImageUrl": "",
+  "trustBadgeElfsightId": "60f8d4bb-57e5-4884-8d2f-6044e59f5dda",
+  "heroImageUrl": "/tenants/tessin-dental/1780920771978-Untitled_design__67_.jpg",
   "includedTitle": "Allt detta ingår i ditt första besök",
   "includedItems": [
     {
@@ -64,7 +68,7 @@
   "airflowBody": "På Tessin Dental använder vi 3Shape digital scanning istället för traditionella gips- och lermasseavtryck. Resultatet är en exakt 3D-modell av ditt bett på sekunder – snabbare, bekvämare och med en precision som gynnar allt från Invisalign-planering till protetiska arbeten. Det här är tandvård i 2024.",
   "clinicTitle": "En klinik som känns annorlunda",
   "clinicBody": "Vi är en boutique-klinik med hjärtat på Östermalm – liten nog att känna varje patient vid namn, och tillräckligt välutrustad för att leverera tandvård i internationell toppklass. Välkommen till Kallskärsgatan.",
-  "interiorImageUrl": "",
+  "interiorImageUrl": "/tenants/tessin-dental/1780917559872-Instagram-06-08-2026_12_58_PM.png",
   "dentistName": "Natalie Carlsten",
   "dentistTitle": "Leg. tandläkare · Medlem i AACD & SACD",
   "dentistQuote": "Vi tror att tandvård ska kännas som ett privilegium, inte en plikt. Vår ambition är att varje patient lämnar kliniken med ett leende – och med full förståelse för sin munhälsa.",
@@ -96,9 +100,10 @@
       "date": "1 månad sedan"
     }
   ],
+  "noObligationImageUrl": "/tenants/tessin-dental/1780921396989-Untitled_design__68_.jpg",
   "noObligationTitle": "Prova oss utan risk – helt utan förpliktelser",
   "noObligationBody": "Nypatient-erbjudandet är till för att du ska kunna uppleva Tessin Dental på riktigt, utan press. Inga inlåsningsavtal, inga dolda avgifter. Om du vill fortsätta som patient hos oss välkomnar vi det varmt – men beslutet är alltid ditt.",
   "bottomCtaTitle": "Komplett undersökning, röntgen, tandstensborttagning & puts",
   "bottomCtaSubtitle": "Nypatient-erbjudande · Premiumtandvård · Östermalm",
-  "showAtbDisclaimer": false
+  "showAtbDisclaimer": true
 }

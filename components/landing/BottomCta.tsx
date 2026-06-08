@@ -28,7 +28,7 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
           </div>
         </div>
 
-        <CtaButton size="lg" />
+        <CtaButton size="lg" label={config.ctaLabels?.bottom || config.ctaText} />
         <p className="text-xs mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
         {config.showAtbDisclaimer && (
           <p className="text-[11px] leading-relaxed mt-3 max-w-md mx-auto" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.7 }}>

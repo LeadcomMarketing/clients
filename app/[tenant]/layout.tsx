@@ -62,8 +62,11 @@ export default async function TenantLayout({ children, params }: Props) {
           {children}
         </div>
 
-        {/* Elfsight reviews widget — only load script when source is set to elfsight */}
-        {config.reviewsSource === "elfsight" && config.integrations.elfsightWidgetId && (
+        {/* Elfsight platform script — loaded whenever any Elfsight widget is active */}
+        {(
+          (config.reviewsSource === "elfsight" && config.integrations.elfsightWidgetId) ||
+          config.trustBadgeElfsightId
+        ) && (
           <Script src="https://static.elfsight.com/platform/platform.js" strategy="lazyOnload" />
         )}
 
