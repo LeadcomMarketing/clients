@@ -1,9 +1,18 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import { cookies } from "next/headers"
+import { verifySessionToken, ADMIN_COOKIE } from "@/lib/admin-auth"
 import { LogoutButton } from "@/components/admin/LogoutButton"
 
 export const metadata = { title: "Leadcom Admin" }
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  // Full HMAC token verification — runs on Node.js (not Edge Runtime)
+  const cookieStore = await cookies()
+  const token = cookieStore.get(ADMIN_COOKIE)?.value
+  if (!token || !verifySessionToken(token)) {
+    redirect("/admin/login")
+  }
   return (
     <div className="min-h-screen bg-slate-950 flex">
       {/* Sidebar */}
