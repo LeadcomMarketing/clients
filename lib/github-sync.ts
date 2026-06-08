@@ -1,3 +1,5 @@
+import "server-only"
+
 /**
  * GitHub API sync — commits updated tenant files directly to the repo.
  * This triggers an automatic Vercel redeploy so the static import registry
@@ -70,13 +72,15 @@ export async function commitFilesToGithub(
 
   // 3. Create blobs for each file
   const treeItems = await Promise.all(files.map(async (file) => {
+    // btoa works in all runtimes; Buffer is Node-only
+    const b64 = typeof Buffer !== "undefined"
+      ? Buffer.from(file.content).toString("base64")
+      : btoa(unescape(encodeURIComponent(file.content)))
+
     const blobRes = await fetch(`${base}/repos/${repo}/git/blobs`, {
       method: "POST",
       headers,
-      body: JSON.stringify({
-        content:  Buffer.from(file.content).toString("base64"),
-        encoding: "base64",
-      }),
+      body: JSON.stringify({ content: b64, encoding: "base64" }),
     })
     const { sha: blobSha } = await blobRes.json() as { sha: string }
     return { path: file.path, mode: "100644", type: "blob", sha: blobSha }
