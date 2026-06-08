@@ -1,0 +1,104 @@
+{
+  "slug": "tessin-dental",
+  "customDomain": "",
+  "createdAt": "2026-06-08T00:00:00.000Z",
+  "clinicName": "Tessin Dental",
+  "clinicCity": "Stockholm",
+  "clinicAddress": "Kallskärsgatan 6, 115 33 Stockholm",
+  "branding": {
+    "brandColor": "#1E3348",
+    "accentColor": "#00B4CC",
+    "pageBg": "#FAFBFC",
+    "sectionBg": "#F0F4F7",
+    "fontHeadline": "Lato",
+    "fontBody": "Open Sans",
+    "logoUrl": "/tenants/tessin-dental/1780914895039-tessin_logo-long-blue-black.webp"
+  },
+  "integrations": {
+    "elfsightWidgetId": "9363e302-e9a6-4c33-979e-ae76b51ef672",
+    "facebookPixelId": "",
+    "makeWebhookUrl": "",
+    "leadForm": {
+      "headline": "Boka din undersökning på Östermalm",
+      "subheadline": "Fyll i dina uppgifter så kontaktar vi dig inom kort för att bekräfta din tid.",
+      "ctaText": "Bekräfta min tid →",
+      "redirectType": "thankyou",
+      "redirectUrl": "",
+      "embedUrl": ""
+    }
+  },
+  "announcementBadge": "Nypatient-erbjudande · Premiumtandvård på Östermalm · Begränsat antal platser",
+  "heroHeadline": "Premiumtandvård på Östermalm – din första undersökning för 490 kr",
+  "heroSubheadline": "Komplett undersökning, röntgen, tandstensborttagning och puts – allt i ett besök hos en av Stockholms mest moderna tandkliniker. Ordinarie pris 2 380 kr, nu 490 kr för nya patienter.",
+  "originalPrice": "2 380 kr",
+  "discountedPrice": "490 kr",
+  "savings": "1 890 kr",
+  "ctaText": "Boka din tid – 490 kr",
+  "ctaSubtext": "Inga dolda avgifter · Avboka kostnadsfritt",
+  "trustBadge": "En av  Östermalms högst betygsatta tandkliniker på Google",
+  "heroImageUrl": "",
+  "includedTitle": "Allt detta ingår i ditt första besök",
+  "includedItems": [
+    {
+      "title": "Komplett undersökning",
+      "description": "En grundlig genomgång av samtliga tänder, tandkött och bett – vi kartlägger din munhälsa noggrant och diskuterar eventuella åtgärder med dig.",
+      "value": ""
+    },
+    {
+      "title": "Röntgen",
+      "description": "Digital röntgen avslöjar problem som inte syns för blotta ögat – vi fångar upp karies, benförlust och andra tillstånd i ett tidigt skede.",
+      "value": ""
+    },
+    {
+      "title": "Lättare tandstensborttagning",
+      "description": "Vi avlägsnar ytliga tandstensbeläggningar för ett renare, fräschare leende– ett enkelt steg som gör stor skillnad för din munhälsa.",
+      "value": ""
+    },
+    {
+      "title": "Professionell puts",
+      "description": "Avslutande puts polerar bort ytliga missfärgningar och ger tänderna en slät, ren yta som bromsar ny plackbildning.",
+      "value": ""
+    }
+  ],
+  "airflowTitle": "Digital tandvård utan obehagliga avtryck",
+  "airflowBody": "På Tessin Dental använder vi 3Shape digital scanning istället för traditionella gips- och lermasseavtryck. Resultatet är en exakt 3D-modell av ditt bett på sekunder – snabbare, bekvämare och med en precision som gynnar allt från Invisalign-planering till protetiska arbeten. Det här är tandvård i 2024.",
+  "clinicTitle": "En klinik som känns annorlunda",
+  "clinicBody": "Vi är en boutique-klinik med hjärtat på Östermalm – liten nog att känna varje patient vid namn, och tillräckligt välutrustad för att leverera tandvård i internationell toppklass. Välkommen till Kallskärsgatan.",
+  "interiorImageUrl": "",
+  "dentistName": "Natalie Carlsten",
+  "dentistTitle": "Leg. tandläkare · Medlem i AACD & SACD",
+  "dentistQuote": "Vi tror att tandvård ska kännas som ett privilegium, inte en plikt. Vår ambition är att varje patient lämnar kliniken med ett leende – och med full förståelse för sin munhälsa.",
+  "dentistBio": "Natalie har tandläkarexamen från Karolinska Institutet 2003.  Natalie är specialinriktad på kron-och bro behandlingar, estetisk tandvård, implantat samt estetisk tandreglering. Medlem i AACD (American Academy of Cosmetic Dentistry) och i SACD (Swedish Academy of Cosmetic Dentistry). ",
+  "dentistImageUrl": "/tenants/tessin-dental/1780914976516-DSC07399-scaled-e1751544368322.webp",
+  "reviewsSource": "elfsight",
+  "reviewsTitle": "Vad våra patienter säger",
+  "reviewsSubtitle": "Östermalms högst betygsatta tandklinik på Google",
+  "reviews": [
+    {
+      "name": "Cecilia Lindström",
+      "location": "Östermalm",
+      "rating": 5,
+      "text": "Absolut bästa tandläkarupplevelsen jag haft. Kliniken är fantastisk, personalen är proffsig och omtänksam. Undersökningen var grundlig och förklaringen tydlig. Rekommenderar varmt!",
+      "date": "1 vecka sedan"
+    },
+    {
+      "name": "Johan Bergman",
+      "location": "Lidingö",
+      "rating": 5,
+      "text": "Äntligen en tandklinik som känns både modern och personlig. Inga gamla avtrycksmassor – de skannade mina tänder digitalt på nolltid. Suverän service från start till slut.",
+      "date": "3 veckor sedan"
+    },
+    {
+      "name": "Isabelle Norén",
+      "location": "Gärdet",
+      "rating": 5,
+      "text": "Otroligt professionellt team. Kände mig trygg redan från första besöket. Invisalign-behandlingen de rekommenderade var precis vad jag behövde – nöjd på alla plan.",
+      "date": "1 månad sedan"
+    }
+  ],
+  "noObligationTitle": "Prova oss utan risk – helt utan förpliktelser",
+  "noObligationBody": "Nypatient-erbjudandet är till för att du ska kunna uppleva Tessin Dental på riktigt, utan press. Inga inlåsningsavtal, inga dolda avgifter. Om du vill fortsätta som patient hos oss välkomnar vi det varmt – men beslutet är alltid ditt.",
+  "bottomCtaTitle": "Komplett undersökning, röntgen, tandstensborttagning & puts",
+  "bottomCtaSubtitle": "Nypatient-erbjudande · Premiumtandvård · Östermalm",
+  "showAtbDisclaimer": false
+}
