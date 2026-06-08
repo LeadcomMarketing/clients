@@ -19,11 +19,10 @@ function isPublicPath(pathname: string) {
   return PUBLIC_PATHS.some((p) => pathname.startsWith(p))
 }
 
-// ── Middleware (fully synchronous — no crypto, no async) ──────────
-// Keeping this dead-simple ensures it never fails in Edge Runtime.
-// Security note: cookie PRESENCE is checked here for a fast redirect UX.
-// The actual HMAC token validity is verified in app/admin/layout.tsx
-// which runs on Node.js and has access to the full crypto module.
+// ── Proxy (replaces deprecated middleware.ts in Next.js 16) ───────
+// Fully synchronous — no crypto, no async.
+// Cookie PRESENCE checked here for fast redirect UX.
+// Full HMAC token verification happens in app/admin/layout.tsx (Node.js).
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
