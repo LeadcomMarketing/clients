@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import type { TenantConfig, TenantMeta } from './tenant-types'
+import { commitFilesToGithub } from './github-sync'
 
 // Static registry — bundled at build time by Turbopack/webpack.
 // On Vercel (read-only filesystem), this is the ONLY source that works.
@@ -56,21 +57,43 @@ export function slugExists(slug: string): boolean {
 
 // ── Write (local dev only — Vercel filesystem is read-only) ────────
 
-export function saveTenant(config: TenantConfig): void {
+export async function saveTenant(config: TenantConfig): Promise<void> {
   ensureDir()
   fs.writeFileSync(path.join(DIR, `${config.slug}.json`), JSON.stringify(config, null, 2))
   _rebuildRegistry()
   _rebuildDomainsMap()
+
+  const registryContent  = fs.readFileSync(path.join(DIR, 'index.ts'), 'utf-8')
+  const tenantContent    = JSON.stringify(config, null, 2)
+  const domainsContent   = JSON.stringify(getDomainsMap(), null, 2)
+
+  // Commit all changed files to GitHub in a single commit → triggers Vercel redeploy
+  await commitFilesToGithub([
+    { path: `tenants/${config.slug}.json`, content: tenantContent },
+    { path: 'tenants/index.ts',            content: registryContent },
+    { path: 'tenants/_domains.json',       content: domainsContent },
+  ], `chore: update tenant ${config.clinicName} via admin`)
+
   _syncVercelEnv(getDomainsMap()).catch((err) =>
     console.warn('[tenants] Vercel env sync skipped:', err.message)
   )
 }
 
-export function deleteTenant(slug: string): void {
+export async function deleteTenant(slug: string): Promise<void> {
   const file = path.join(DIR, `${slug}.json`)
+  const clinicName = getTenant(slug)?.clinicName ?? slug
   if (fs.existsSync(file)) fs.unlinkSync(file)
   _rebuildRegistry()
   _rebuildDomainsMap()
+
+  const registryContent = fs.readFileSync(path.join(DIR, 'index.ts'), 'utf-8')
+  const domainsContent  = JSON.stringify(getDomainsMap(), null, 2)
+
+  await commitFilesToGithub([
+    { path: 'tenants/index.ts',      content: registryContent },
+    { path: 'tenants/_domains.json', content: domainsContent },
+  ], `chore: remove tenant ${clinicName} via admin`)
+
   _syncVercelEnv(getDomainsMap()).catch((err) =>
     console.warn('[tenants] Vercel env sync skipped:', err.message)
   )

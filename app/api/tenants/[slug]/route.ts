@@ -17,13 +17,13 @@ export async function PUT(req: NextRequest, { params }: Ctx) {
 
   const body = await req.json()
   const updated = { ...existing, ...body, slug, createdAt: existing.createdAt }
-  saveTenant(updated)
+  await saveTenant(updated)
   return NextResponse.json(updated)
 }
 
 export async function DELETE(_req: NextRequest, { params }: Ctx) {
   const { slug } = await params
   if (!getTenant(slug)) return NextResponse.json({ error: "not found" }, { status: 404 })
-  deleteTenant(slug)
+  await deleteTenant(slug)
   return NextResponse.json({ ok: true })
 }

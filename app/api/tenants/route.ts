@@ -21,6 +21,6 @@ export async function POST(req: NextRequest) {
     createdAt: new Date().toISOString(),
   }
 
-  saveTenant(config)
+  await saveTenant(config)
   return NextResponse.json(config, { status: 201 })
 }
