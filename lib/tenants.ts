@@ -10,35 +10,47 @@ import { commitFilesToGithub } from './github-sync'
 import { tenantRegistry } from '../tenants/index'
 
 const DIR = path.join(process.cwd(), 'tenants')
-const ON_VERCEL = !!process.env.VERCEL
 
 function ensureDir() {
   if (!fs.existsSync(DIR)) fs.mkdirSync(DIR, { recursive: true })
 }
 
 // ── Read ──────────────────────────────────────────────────────────
+// Strategy: try the static registry first (bundled at build time, works on
+// Vercel where the filesystem may not have the files). Fall back to the
+// filesystem for local dev and hot-reload. No env var dependency.
 
 export function getTenant(slug: string): TenantConfig | null {
-  if (ON_VERCEL) {
-    return (tenantRegistry[slug] as TenantConfig) ?? null
-  }
-  ensureDir()
-  const file = path.join(DIR, `${slug}.json`)
-  if (!fs.existsSync(file)) return null
-  return JSON.parse(fs.readFileSync(file, 'utf-8')) as TenantConfig
+  // 1. Static registry (bundled — always works on Vercel)
+  const fromRegistry = tenantRegistry[slug] as TenantConfig | undefined
+  if (fromRegistry) return fromRegistry
+
+  // 2. Filesystem fallback (local dev / edge cases)
+  try {
+    const file = path.join(DIR, `${slug}.json`)
+    if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf-8')) as TenantConfig
+  } catch {}
+  return null
 }
 
 export function getAllTenants(): TenantConfig[] {
-  if (ON_VERCEL) {
-    return (Object.values(tenantRegistry) as TenantConfig[])
-      .sort((a, b) => a.clinicName.localeCompare(b.clinicName))
+  // 1. Registry has data — use it
+  const fromRegistry = Object.values(tenantRegistry) as TenantConfig[]
+  if (fromRegistry.length > 0) {
+    return fromRegistry.sort((a, b) => a.clinicName.localeCompare(b.clinicName))
   }
-  ensureDir()
-  return fs
-    .readdirSync(DIR)
-    .filter((f) => f.endsWith('.json') && !f.startsWith('_'))
-    .map((f) => JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf-8')) as TenantConfig)
-    .sort((a, b) => a.clinicName.localeCompare(b.clinicName))
+
+  // 2. Filesystem fallback
+  try {
+    ensureDir()
+    return fs
+      .readdirSync(DIR)
+      .filter((f) => f.endsWith('.json') && !f.startsWith('_'))
+      .map((f) => JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf-8')) as TenantConfig)
+      .sort((a, b) => a.clinicName.localeCompare(b.clinicName))
+  } catch {
+    return []
+  }
 }
 
 export function getTenantMetas(): TenantMeta[] {
@@ -52,7 +64,7 @@ export function getTenantMetas(): TenantMeta[] {
 }
 
 export function slugExists(slug: string): boolean {
-  if (ON_VERCEL) return slug in tenantRegistry
+  if (slug in tenantRegistry) return true
   return fs.existsSync(path.join(DIR, `${slug}.json`))
 }
 
