@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 // Static JSON import — bundled at build/restart (Edge Runtime cannot use `fs`).
 // When a custom domain is added via admin, this file is rewritten and the dev
 // server hot-reloads it. In production a redeploy is needed (fine for agency cadence).
-import domainsMap from "@/tenants/_domains.json"
+import domainsMap from "./tenants/_domains.json"
 
 const ADMIN_COOKIE = "lc_admin"
 const DOMAINS: Record<string, string> = domainsMap as Record<string, string>
