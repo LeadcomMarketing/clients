@@ -1,10 +1,20 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import { cookies } from "next/headers"
+import { verifySessionToken, ADMIN_COOKIE } from "@/lib/admin-auth"
 import { getTenantMetas } from "@/lib/tenants"
 import { DeleteTenantButton } from "@/components/admin/DeleteTenantButton"
 
 export const dynamic = "force-dynamic"
 
-export default function AdminDashboard() {
+async function requireAuth() {
+  const store = await cookies()
+  const token = store.get(ADMIN_COOKIE)?.value
+  if (!token || !verifySessionToken(token)) redirect("/admin/login")
+}
+
+export default async function AdminDashboard() {
+  await requireAuth()
   const tenants = getTenantMetas()
 
   return (
