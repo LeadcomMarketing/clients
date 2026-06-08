@@ -24,7 +24,7 @@ function isPublicPath(pathname: string) {
 // Cookie PRESENCE checked here for fast redirect UX.
 // Full HMAC token verification happens in app/admin/layout.tsx (Node.js).
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
   const bareHost = (req.headers.get("host") ?? "").split(":")[0]
 
