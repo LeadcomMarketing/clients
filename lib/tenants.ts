@@ -68,59 +68,86 @@ export function slugExists(slug: string): boolean {
   return fs.existsSync(path.join(DIR, `${slug}.json`))
 }
 
-// ── Write (local dev only — Vercel filesystem is read-only) ────────
+// ── Write ─────────────────────────────────────────────────────────
+// Builds all content in memory first, then:
+//   1. Writes to filesystem (local dev hot-reload)
+//   2. Commits to GitHub (Vercel — triggers redeploy with new static registry)
+// On Vercel the filesystem is read-only so step 1 silently fails; step 2 is what matters.
 
 export async function saveTenant(config: TenantConfig): Promise<void> {
-  ensureDir()
-  fs.writeFileSync(path.join(DIR, `${config.slug}.json`), JSON.stringify(config, null, 2))
-  _rebuildRegistry()
-  _rebuildDomainsMap()
+  const tenantContent = JSON.stringify(config, null, 2)
 
-  const registryContent  = fs.readFileSync(path.join(DIR, 'index.ts'), 'utf-8')
-  const tenantContent    = JSON.stringify(config, null, 2)
-  const domainsContent   = JSON.stringify(getDomainsMap(), null, 2)
-
-  // Commit all changed files to GitHub in a single commit → triggers Vercel redeploy
-  await commitFilesToGithub([
-    { path: `tenants/${config.slug}.json`, content: tenantContent },
-    { path: 'tenants/index.ts',            content: registryContent },
-    { path: 'tenants/_domains.json',       content: domainsContent },
-  ], `chore: update tenant ${config.clinicName} via admin`)
-
-  _syncVercelEnv(getDomainsMap()).catch((err) =>
-    console.warn('[tenants] Vercel env sync skipped:', err.message)
+  // Merge into existing registry (works with in-memory data on Vercel)
+  const currentTenants: Record<string, TenantConfig> = Object.fromEntries(
+    Object.entries(tenantRegistry).map(([k, v]) => [k, v as TenantConfig])
   )
+  const updatedTenants = { ...currentTenants, [config.slug]: config }
+
+  const registryContent = _buildRegistryContent(updatedTenants)
+  const domainsMap      = _buildDomainsMap(updatedTenants)
+  const domainsContent  = JSON.stringify(domainsMap, null, 2)
+
+  // 1. Filesystem write (local dev)
+  try {
+    ensureDir()
+    fs.writeFileSync(path.join(DIR, `${config.slug}.json`), tenantContent)
+    fs.writeFileSync(path.join(DIR, 'index.ts'), registryContent)
+    fs.writeFileSync(path.join(DIR, '_domains.json'), domainsContent)
+  } catch { /* read-only on Vercel — step 2 handles persistence */ }
+
+  // 2. GitHub commit → triggers Vercel redeploy
+  const hasGithub = !!(process.env.GITHUB_TOKEN && process.env.GITHUB_REPO)
+  if (hasGithub) {
+    await commitFilesToGithub([
+      { path: `tenants/${config.slug}.json`, content: tenantContent },
+      { path: 'tenants/index.ts',            content: registryContent },
+      { path: 'tenants/_domains.json',       content: domainsContent },
+    ], `chore: update tenant ${config.clinicName} via admin`)
+  } else if (!fs.existsSync(path.join(DIR, `${config.slug}.json`))) {
+    throw new Error('GITHUB_TOKEN not configured — add it to Vercel environment variables so admin saves can persist.')
+  }
+
+  _syncVercelEnv(domainsMap).catch(err => console.warn('[tenants]', err.message))
 }
 
 export async function deleteTenant(slug: string): Promise<void> {
-  const file = path.join(DIR, `${slug}.json`)
   const clinicName = getTenant(slug)?.clinicName ?? slug
-  if (fs.existsSync(file)) fs.unlinkSync(file)
-  _rebuildRegistry()
-  _rebuildDomainsMap()
 
-  const registryContent = fs.readFileSync(path.join(DIR, 'index.ts'), 'utf-8')
-  const domainsContent  = JSON.stringify(getDomainsMap(), null, 2)
-
-  await commitFilesToGithub([
-    { path: 'tenants/index.ts',      content: registryContent },
-    { path: 'tenants/_domains.json', content: domainsContent },
-  ], `chore: remove tenant ${clinicName} via admin`)
-
-  _syncVercelEnv(getDomainsMap()).catch((err) =>
-    console.warn('[tenants] Vercel env sync skipped:', err.message)
+  const currentTenants: Record<string, TenantConfig> = Object.fromEntries(
+    Object.entries(tenantRegistry)
+      .filter(([k]) => k !== slug)
+      .map(([k, v]) => [k, v as TenantConfig])
   )
+
+  const registryContent = _buildRegistryContent(currentTenants)
+  const domainsMap      = _buildDomainsMap(currentTenants)
+  const domainsContent  = JSON.stringify(domainsMap, null, 2)
+
+  try {
+    const file = path.join(DIR, `${slug}.json`)
+    if (fs.existsSync(file)) fs.unlinkSync(file)
+    fs.writeFileSync(path.join(DIR, 'index.ts'), registryContent)
+    fs.writeFileSync(path.join(DIR, '_domains.json'), domainsContent)
+  } catch { /* read-only on Vercel */ }
+
+  if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPO) {
+    await commitFilesToGithub([
+      { path: 'tenants/index.ts',      content: registryContent },
+      { path: 'tenants/_domains.json', content: domainsContent },
+    ], `chore: remove tenant ${clinicName} via admin`)
+  }
+
+  _syncVercelEnv(domainsMap).catch(err => console.warn('[tenants]', err.message))
 }
 
-// ── Registry (auto-generated static imports for Vercel) ───────────
+// ── In-memory content builders ────────────────────────────────────
 
 function _slugToIdentifier(slug: string): string {
   return slug.replace(/-([a-z0-9])/g, (_, c: string) => c.toUpperCase())
 }
 
-function _rebuildRegistry(): void {
-  const tenants = getAllTenants()
-
+function _buildRegistryContent(tenants: Record<string, TenantConfig>): string {
+  const slugs = Object.keys(tenants).sort()
   const lines = [
     '// AUTO-GENERATED — rebuilt automatically by saveTenant() / deleteTenant()',
     '// Do not edit manually. Commit this file whenever tenants are added or removed.',
@@ -128,21 +155,30 @@ function _rebuildRegistry(): void {
     '// data available without filesystem access at runtime.',
     '/* eslint-disable */',
     '',
+    ...slugs.map(s => `import ${_slugToIdentifier(s)} from './${s}.json'`),
+    '',
+    'export const tenantRegistry: Record<string, object> = {',
+    ...slugs.map(s => `  '${s}': ${_slugToIdentifier(s)},`),
+    '}',
+    '',
   ]
+  return lines.join('\n')
+}
 
-  for (const t of tenants) {
-    lines.push(`import ${_slugToIdentifier(t.slug)} from './${t.slug}.json'`)
+function _buildDomainsMap(tenants: Record<string, TenantConfig>): DomainsMap {
+  const map: DomainsMap = {}
+  for (const t of Object.values(tenants)) {
+    if (t.customDomain?.trim()) map[t.customDomain.trim()] = t.slug
   }
+  return map
+}
 
-  lines.push('')
-  lines.push('export const tenantRegistry: Record<string, object> = {')
-  for (const t of tenants) {
-    lines.push(`  '${t.slug}': ${_slugToIdentifier(t.slug)},`)
-  }
-  lines.push('}')
-  lines.push('')
-
-  fs.writeFileSync(path.join(DIR, 'index.ts'), lines.join('\n'))
+// Legacy filesystem rebuilders (used locally when filesystem is writable)
+function _rebuildRegistry(): void {
+  const tenants = Object.fromEntries(
+    getAllTenants().map(t => [t.slug, t])
+  )
+  fs.writeFileSync(path.join(DIR, 'index.ts'), _buildRegistryContent(tenants))
 }
 
 // ── Domain map ────────────────────────────────────────────────────
