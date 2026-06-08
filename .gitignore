@@ -17,5 +17,5 @@ node_modules
 # Leadcom — keep leads data out of version control
 leads/
 
-# Uploaded tenant photos (large binaries — serve from Vercel Blob in production)
-public/tenants/
+# public/tenants/ intentionally tracked so images deploy to Vercel
+# Switch to Vercel Blob (BLOB_READ_WRITE_TOKEN) when image volume grows large
