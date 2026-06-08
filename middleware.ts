@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
-// Static JSON import — bundled at build/restart (Edge Runtime cannot use `fs`).
-// When a custom domain is added via admin, this file is rewritten and the dev
-// server hot-reloads it. In production a redeploy is needed (fine for agency cadence).
-import domainsMap from "./tenants/_domains.json"
 
 const ADMIN_COOKIE = "lc_admin"
-const DOMAINS: Record<string, string> = domainsMap as Record<string, string>
+
+// Domains map is stored as a JSON string in the TENANT_DOMAINS env var.
+// e.g. TENANT_DOMAINS='{"tessindental.se":"tessin-dental"}'
+// Updated automatically by the admin API when a custom domain is saved.
+// Falls back to an empty map (no custom domain routing) if not set.
+const DOMAINS: Record<string, string> = (() => {
+  try {
+    return JSON.parse(process.env.TENANT_DOMAINS ?? "{}") as Record<string, string>
+  } catch {
+    return {}
+  }
+})()
 const PUBLIC_PATHS = ["/admin/login", "/api/admin/login", "/_next", "/favicon", "/images"]
 
 function isPublicPath(pathname: string) {
