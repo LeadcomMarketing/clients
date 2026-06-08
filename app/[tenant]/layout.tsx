@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${config.clinicName} – Komplett tandvård i ${config.clinicCity}`,
     description: `Boka din tandundersökning med röntgenbilder, 3D-skanning och AirFlow®-behandling. Spara ${config.savings} – nu endast ${config.discountedPrice}.`,
+    robots: { index: false, follow: false },
   }
 }
 
