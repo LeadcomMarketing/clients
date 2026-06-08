@@ -36,7 +36,10 @@
   "ctaText": "Boka din tid – 490 kr",
   "ctaSubtext": "Tidsbegränsat erbjudande · Endast för nya patienter",
   "ctaLabels": {
-    "bottom": "Boka nu medan erbjudandet finns kvar!"
+    "bottom": "Boka nu medan erbjudandet finns kvar!",
+    "afterIncluded": "Ja, jag vill boka detta paket →",
+    "hero": "Boka nu - endast 490 kr",
+    "afterReviews": "Jag vill bli nästa nöjda patient→"
   },
   "trustBadge": "En av  Östermalms högst betygsatta tandkliniker på Google",
   "trustBadgeElfsightId": "60f8d4bb-57e5-4884-8d2f-6044e59f5dda",
