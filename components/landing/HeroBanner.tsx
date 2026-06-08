@@ -81,39 +81,40 @@ export default function HeroBanner({
 
             {/* Trust badge — priority: native Google → Elfsight widget → text pill → hidden */}
             {googleRating ? (
-              <div className="self-center md:self-start">
+              <div className="self-center md:self-start mb-5">
                 <NativeGoogleBadge {...googleRating} />
               </div>
             ) : config.trustBadgeElfsightId ? (
-              <div className="mb-7 self-center md:self-start">
+              /* Constrain Elfsight badge on mobile so it doesn't blow out the layout */
+              <div className="mb-5 self-center md:self-start max-w-[240px] sm:max-w-none overflow-hidden">
                 <div className={`elfsight-app-${config.trustBadgeElfsightId}`} data-elfsight-app-lazy />
               </div>
             ) : config.trustBadge ? (
-              <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2 shadow-sm mb-7 self-center md:self-start" style={{ borderColor: "var(--border, #E5E0D9)" }}>
+              <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2 shadow-sm mb-5 self-center md:self-start" style={{ borderColor: "var(--border, #E5E0D9)" }}>
                 <span className="flex text-yellow-400 text-sm leading-none" aria-hidden="true">★★★★★</span>
                 <span className="text-xs font-semibold" style={{ color: "var(--brand)" }}>{config.trustBadge}</span>
               </div>
             ) : null}
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-balance mb-5" style={{ color: "var(--foreground, #1A1714)" }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-[-0.02em] text-balance mb-4" style={{ color: "var(--foreground, #1A1714)" }}>
               {config.heroHeadline}
             </h1>
 
-            <p className="text-base md:text-lg leading-relaxed mb-8 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.heroSubheadline}
             </p>
 
             {/* Price lockup */}
-            <div className="relative flex items-center gap-4 mb-8 self-center md:self-start">
-              <span className="text-base line-through font-medium" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <div className="relative flex items-center flex-wrap gap-3 mb-8 self-center md:self-start">
+              <span className="text-sm sm:text-base line-through font-medium whitespace-nowrap" style={{ color: "var(--muted-foreground, #6B6460)" }}>
                 {config.originalPrice}
               </span>
-              <div className="relative inline-block">
-                <span className="text-[2.75rem] font-extrabold leading-none" style={{ color: "var(--brand)" }}>
+              <div className="relative inline-block overflow-visible">
+                <span className="text-[2.25rem] sm:text-[2.75rem] font-extrabold leading-none" style={{ color: "var(--brand)" }}>
                   {config.discountedPrice}
                 </span>
-                <svg className="absolute -bottom-2 left-[-4%] w-[108%]" viewBox="0 0 130 14" fill="none" aria-hidden="true">
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 130 14" fill="none" aria-hidden="true">
                   {/* Main sweep — gentle arc that rises in the middle */}
                   <path d="M2,10 C30,4 65,3 98,7 C109,8.5 120,10 128,8.5"
                     stroke="var(--accent-warm)" strokeWidth="2.5" strokeLinecap="round" />

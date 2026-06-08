@@ -4,7 +4,7 @@ import CtaButton from "./CtaButton"
 
 export default function NavBar({ config }: { config: TenantConfig }) {
   return (
-    <nav className="max-w-6xl mx-auto px-5 md:px-8 py-5 flex items-center justify-between">
+    <nav className="max-w-6xl mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center justify-between gap-3 w-full">
       {config.branding.logoUrl ? (
         <Image
           src={config.branding.logoUrl}
@@ -15,11 +15,11 @@ export default function NavBar({ config }: { config: TenantConfig }) {
           priority
         />
       ) : (
-        <span className="font-extrabold text-base md:text-lg tracking-tight" style={{ color: "var(--brand)" }}>
+        <span className="font-extrabold text-base md:text-lg tracking-tight truncate min-w-0 flex-1" style={{ color: "var(--brand)" }}>
           {config.clinicName}
         </span>
       )}
-      <CtaButton size="default" label={config.ctaLabels?.nav || "Boka tid →"} />
+      <CtaButton size="default" label={config.ctaLabels?.nav || "Boka tid →"} className="!px-4 !py-2.5 !text-sm whitespace-nowrap" />
     </nav>
   )
 }

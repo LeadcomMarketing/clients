@@ -58,7 +58,7 @@ export default async function TenantLayout({ children, params }: Props) {
         {fontCss && <style dangerouslySetInnerHTML={{ __html: fontCss }} />}
 
         {/* CSS variable overrides + tenant scope class */}
-        <div className="lc-tenant" style={cssVars}>
+        <div className="lc-tenant w-full overflow-x-hidden" style={cssVars}>
           {children}
         </div>
 

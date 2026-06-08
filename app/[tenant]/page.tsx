@@ -30,7 +30,7 @@ export default async function TenantPage({ params }: Props) {
     : null
 
   return (
-    <main className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
+    <main className="min-h-screen w-full pb-20 md:pb-0" style={{ backgroundColor: "var(--background)" }}>
       <AnnouncementBar config={config} />
       <NavBar config={config} />
       <HeroBanner config={config} googleRating={googleRating} />

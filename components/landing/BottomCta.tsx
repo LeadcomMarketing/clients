@@ -19,7 +19,7 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
             <span className="text-[2.75rem] font-extrabold leading-none" style={{ color: "var(--brand)" }}>
               {config.discountedPrice}
             </span>
-            <svg className="absolute -bottom-2 left-[-4%] w-[108%]" viewBox="0 0 130 14" fill="none" aria-hidden="true">
+            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 130 14" fill="none" aria-hidden="true">
               <path d="M2,10 C30,4 65,3 98,7 C109,8.5 120,10 128,8.5"
                 stroke="var(--accent-warm)" strokeWidth="2.5" strokeLinecap="round" />
               <path d="M6,12 C35,8 70,7.5 102,10 C112,11 121,11.5 127,10.5"

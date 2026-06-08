@@ -24,12 +24,13 @@ function Avatar({ name }: { name: string }) {
 function FallbackCards({ config }: { config: TenantConfig }) {
   return (
     <div className="relative bg-white rounded-[2rem] border shadow-[0_8px_48px_rgba(0,0,0,0.10)] overflow-hidden mb-12" style={{ borderColor: "var(--border, #E5E0D9)" }}>
-      <div className="absolute left-0 top-0 bottom-0 w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
-      <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
-      <div className="flex gap-5 p-6 md:p-8 overflow-x-auto scrollbar-hide">
+      {/* overflow-x-auto with -webkit-overflow-scrolling for momentum scroll on iOS */}
+      <div className="flex gap-4 p-4 md:p-8 overflow-x-auto scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
         {config.reviews.map((review, i) => (
-          <div key={i} className="flex-shrink-0 w-72 md:w-80 flex flex-col gap-4 rounded-[1.5rem] p-5 border" style={{ backgroundColor: "var(--background)", borderColor: "var(--border, #E5E0D9)" }}>
+          <div key={i} className="flex-shrink-0 w-[78vw] sm:w-72 md:w-80 flex flex-col gap-4 rounded-[1.5rem] p-4 sm:p-5 border" style={{ backgroundColor: "var(--background)", borderColor: "var(--border, #E5E0D9)" }}>
             <div className="flex gap-0.5" aria-label={`${review.rating} av 5 stjärnor`}>
               {Array.from({ length: 5 }).map((_, j) => (
                 <svg key={j} width="15" height="15" viewBox="0 0 15 15" fill={j < review.rating ? "#FBBF24" : "var(--border, #E5E0D9)"} aria-hidden="true">
@@ -80,7 +81,7 @@ export default function ReviewsSection({ config }: { config: TenantConfig }) {
           Script is loaded in the tenant layout.
         */}
         {useElfsight ? (
-          <div className="mb-12">
+          <div className="mb-12 w-full overflow-x-hidden">
             <div className={`elfsight-app-${config.integrations.elfsightWidgetId}`} data-elfsight-app-lazy />
           </div>
         ) : (

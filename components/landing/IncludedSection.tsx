@@ -40,8 +40,8 @@ export default function IncludedSection({ config }: { config: TenantConfig }) {
               const Icon = ICONS[i % ICONS.length]
               const isLast = i === config.includedItems.length - 1
               return (
-                <div key={i} className="relative flex gap-5 items-start bg-white rounded-[1.5rem] p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.07)] border hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-shadow duration-200" style={{ borderColor: "var(--border, #E5E0D9)" }}>
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm" style={{ backgroundColor: "var(--brand-light, #EEF2F7)" }}>
+                <div key={i} className="relative flex gap-3 sm:gap-5 items-start bg-white rounded-[1.5rem] p-4 sm:p-5 md:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.07)] border hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-shadow duration-200" style={{ borderColor: "var(--border, #E5E0D9)" }}>
+                  <div className="flex-shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm" style={{ backgroundColor: "var(--brand-light, #EEF2F7)" }}>
                     <Icon />
                   </div>
                   <div className="flex flex-col justify-center flex-1">
