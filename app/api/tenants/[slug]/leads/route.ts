@@ -49,24 +49,24 @@ export async function POST(req: NextRequest, { params }: Ctx) {
   const tenant = getTenant(slug)
   const webhookUrl = tenant?.integrations.makeWebhookUrl?.trim()
   if (webhookUrl) {
-    fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        // Standard fields Make expects
-        name:      lead.name,
-        email:     lead.email,
-        phone:     lead.phone,
-        // Context useful for routing inside Make
-        clinic:    tenant.clinicName,
-        slug,
-        createdAt: lead.createdAt,
-        leadId:    lead.id,
-      }),
-    }).catch((err) => {
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:      lead.name,
+          email:     lead.email,
+          phone:     lead.phone,
+          clinic:    tenant.clinicName,
+          slug,
+          createdAt: lead.createdAt,
+          leadId:    lead.id,
+        }),
+      })
+    } catch (err) {
       // Non-fatal — log but don't fail the request
       console.error(`[Make webhook] ${slug}:`, err)
-    })
+    }
   }
 
   return NextResponse.json({ ok: true })
