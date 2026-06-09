@@ -26,11 +26,11 @@ export default function AuthoritySection({ config }: { config: TenantConfig }) {
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-0.5" style={{ backgroundColor: "var(--accent-warm)" }} />
                 <div>
-                  <p className="font-bold text-white text-xl">{config.dentistName}</p>
-                  <p className="text-lg text-white/60">{config.dentistTitle}</p>
+                  <p className="font-bold text-white text-xl md:text-base">{config.dentistName}</p>
+                  <p className="text-lg md:text-sm text-white/60">{config.dentistTitle}</p>
                 </div>
               </div>
-              <p className="text-lg sm:text-xl text-white/70 leading-relaxed">{config.dentistBio}</p>
+              <p className="text-xl md:text-base text-white/70 leading-relaxed">{config.dentistBio}</p>
             </div>
 
           </div>

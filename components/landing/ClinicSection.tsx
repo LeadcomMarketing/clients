@@ -8,7 +8,7 @@ export default function ClinicSection({ config }: { config: TenantConfig }) {
         <h2 className="text-[2rem] sm:text-4xl md:text-[2.75rem] font-extrabold text-center text-balance mb-3 tracking-tight leading-[1.1]" style={{ color: "var(--foreground, #1A1714)" }}>
           {config.clinicTitle}
         </h2>
-        <p className="text-center text-xl leading-relaxed max-w-xl mx-auto mb-10" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+        <p className="text-center text-xl md:text-base leading-relaxed max-w-xl mx-auto mb-10" style={{ color: "var(--muted-foreground, #6B6460)" }}>
           {config.clinicBody}
         </p>
 

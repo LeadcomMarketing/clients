@@ -38,12 +38,12 @@ function FallbackCards({ config }: { config: TenantConfig }) {
                 </svg>
               ))}
             </div>
-            <p className="text-lg sm:text-xl leading-relaxed flex-1" style={{ color: "var(--foreground, #1A1714)" }}>&ldquo;{review.text}&rdquo;</p>
+            <p className="text-xl md:text-base leading-relaxed flex-1" style={{ color: "var(--foreground, #1A1714)" }}>&ldquo;{review.text}&rdquo;</p>
             <div className="flex items-center gap-3 pt-3 border-t" style={{ borderColor: "var(--border, #E5E0D9)" }}>
               <Avatar name={review.name} />
               <div className="flex-1 min-w-0">
-                <p className="text-lg font-bold truncate" style={{ color: "var(--foreground, #1A1714)" }}>{review.name}</p>
-                <p className="text-base" style={{ color: "var(--muted-foreground, #6B6460)" }}>{review.location} · {review.date}</p>
+                <p className="text-lg md:text-base font-bold truncate" style={{ color: "var(--foreground, #1A1714)" }}>{review.name}</p>
+                <p className="text-base md:text-sm" style={{ color: "var(--muted-foreground, #6B6460)" }}>{review.location} · {review.date}</p>
               </div>
               <GoogleLogo />
             </div>
@@ -64,14 +64,14 @@ export default function ReviewsSection({ config }: { config: TenantConfig }) {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2 shadow-sm mb-5" style={{ borderColor: "var(--border, #E5E0D9)" }}>
             <GoogleLogo />
-            <span className="text-lg font-semibold" style={{ color: "var(--muted-foreground, #6B6460)" }}>Verifierade Google-recensioner</span>
+            <span className="text-lg md:text-sm font-semibold" style={{ color: "var(--muted-foreground, #6B6460)" }}>Verifierade Google-recensioner</span>
           </div>
           <h2 className="text-[2rem] sm:text-4xl md:text-[2.75rem] font-extrabold text-balance tracking-tight leading-[1.1]" style={{ color: "var(--foreground, #1A1714)" }}>
             {config.reviewsTitle}
           </h2>
           <div className="flex flex-col items-center gap-1.5 mt-3">
             <span className="flex text-yellow-400 text-xl leading-none" aria-hidden="true">★★★★★</span>
-            <span className="text-lg font-medium" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.reviewsSubtitle}</span>
+            <span className="text-lg md:text-base font-medium" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.reviewsSubtitle}</span>
           </div>
         </div>
 
