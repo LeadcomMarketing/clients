@@ -38,7 +38,7 @@ export default function CtaButton({ size = "default", className, label, hideDisc
         {label ?? config.ctaText}
       </button>
       {showAtb && (
-        <p className="text-[11px] leading-relaxed text-center max-w-xs" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.65 }}>
+        <p className="text-sm leading-relaxed text-center max-w-xs" style={{ color: "var(--muted-foreground, #6B6460)" }}>
           * {ATB_DISCLAIMER}
         </p>
       )}
