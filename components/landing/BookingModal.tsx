@@ -282,6 +282,8 @@ export default function BookingModal() {
     }
 
     if (redirectType === "url" && redirectUrl) {
+      // Small delay so the pixel beacon has time to dispatch before navigation
+      await new Promise(resolve => setTimeout(resolve, 300))
       window.location.href = redirectUrl
       return
     }
