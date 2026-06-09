@@ -77,13 +77,20 @@ function ImageField({ label, value, onChange, slug }: {
     const file = e.target.files?.[0]
     if (!file) return
     setUploading(true)
-    const fd = new FormData()
-    fd.append("file", file)
-    const res = await fetch(`/api/tenants/${slug}/upload`, { method: "POST", body: fd })
-    const data = await res.json()
-    if (data.url) onChange(data.url)
-    setUploading(false)
-    if (inputRef.current) inputRef.current.value = ""
+    try {
+      const fd = new FormData()
+      fd.append("file", file)
+      const res = await fetch(`/api/tenants/${slug}/upload`, { method: "POST", body: fd })
+      const data = await res.json()
+      if (data.url) onChange(data.url)
+      else alert(data.error ?? "Uppladdning misslyckades")
+    } catch (err) {
+      console.error("Upload error", err)
+      alert("Uppladdning misslyckades – se konsolen för detaljer")
+    } finally {
+      setUploading(false)
+      if (inputRef.current) inputRef.current.value = ""
+    }
   }
 
   return (

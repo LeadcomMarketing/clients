@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import fs from "fs"
 import path from "path"
-import { getTenant } from "@/lib/tenants"
 
 interface Ctx { params: Promise<{ slug: string }> }
 
 export async function POST(req: NextRequest, { params }: Ctx) {
   const { slug } = await params
-  if (!getTenant(slug)) return NextResponse.json({ error: "tenant not found" }, { status: 404 })
+  // Basic slug validation — no spaces, no path traversal
+  if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
+    return NextResponse.json({ error: "invalid slug" }, { status: 400 })
+  }
 
   const formData = await req.formData()
   const file = formData.get("file") as File | null
