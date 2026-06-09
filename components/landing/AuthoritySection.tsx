@@ -8,14 +8,13 @@ export default function AuthoritySection({ config }: { config: TenantConfig }) {
         <div className="rounded-[2rem] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.25)]" style={{ backgroundColor: "var(--brand)" }}>
           <div className="flex flex-col md:flex-row">
 
-            {/* Photo */}
-            <div className="md:w-2/5 relative min-h-72 md:min-h-0">
+            {/* Photo — aspect-[3/2] on mobile gives a tight head/shoulder crop */}
+            <div className="md:w-2/5 relative aspect-[3/2] md:aspect-auto md:min-h-0">
               {config.dentistImageUrl ? (
                 <Image src={config.dentistImageUrl} alt={`${config.dentistName}, ${config.dentistTitle}`} fill className="object-cover object-top" />
               ) : (
-                <div className="w-full h-full min-h-72" style={{ backgroundColor: "color-mix(in srgb, var(--brand) 70%, black)" }} />
+                <div className="w-full h-full" style={{ backgroundColor: "color-mix(in srgb, var(--brand) 70%, black)" }} />
               )}
-              <div className="absolute inset-x-0 bottom-0 h-3 bg-gradient-to-t from-[var(--brand)] to-transparent md:hidden" aria-hidden="true" />
             </div>
 
             {/* Content */}
