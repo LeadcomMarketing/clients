@@ -15,7 +15,7 @@ export default function AuthoritySection({ config }: { config: TenantConfig }) {
               ) : (
                 <div className="w-full h-full min-h-72" style={{ backgroundColor: "color-mix(in srgb, var(--brand) 70%, black)" }} />
               )}
-              <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[var(--brand)] to-transparent md:hidden" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 h-3 bg-gradient-to-t from-[var(--brand)] to-transparent md:hidden" aria-hidden="true" />
             </div>
 
             {/* Content */}
