@@ -18,9 +18,10 @@ export default function StickyMobileCta() {
         style={{ borderColor: "var(--border, #E5E0D9)" }}
       >
         <div className="min-w-0">
-          <p className="text-lg font-bold leading-tight truncate" style={{ color: "var(--foreground, #1A1714)" }}>
-            Nytt pris:{" "}
-            <span className="text-xl" style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
+          <p className="text-lg font-bold leading-tight" style={{ color: "var(--foreground, #1A1714)" }}>
+            Ditt pris idag:{" "}
+            <span className="line-through font-normal text-base" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.originalPrice}</span>{" "}
+            <span style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
           </p>
           <p className="text-base mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
             {config.ctaSubtext}
