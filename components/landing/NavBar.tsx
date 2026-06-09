@@ -11,7 +11,7 @@ export default function NavBar({ config }: { config: TenantConfig }) {
           alt={config.clinicName}
           height={40}
           width={160}
-          className="h-9 md:h-10 w-auto object-contain"
+          className="h-10 md:h-12 w-auto object-contain"
           priority
         />
       ) : (

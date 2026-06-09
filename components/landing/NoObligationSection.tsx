@@ -27,10 +27,10 @@ export default function NoObligationSection({ config }: { config: TenantConfig }
                 <path d="M9 12l2 2 4-4" stroke="var(--accent-warm)" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-[2rem] font-extrabold mb-4 text-balance tracking-tight leading-[1.15]" style={{ color: "var(--foreground, #1A1714)" }}>
+            <h2 className="text-[1.75rem] sm:text-3xl md:text-[2rem] font-extrabold mb-4 text-balance tracking-tight leading-[1.15]" style={{ color: "var(--foreground, #1A1714)" }}>
               {config.noObligationTitle}
             </h2>
-            <p className="text-sm md:text-base leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.noObligationBody}
             </p>
           </div>

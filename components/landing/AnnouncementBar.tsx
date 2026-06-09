@@ -3,7 +3,7 @@ import type { TenantConfig } from "@/lib/tenant-types"
 export default function AnnouncementBar({ config }: { config: TenantConfig }) {
   return (
     <div
-      className="text-white text-center py-2.5 px-4 text-xs sm:text-sm font-semibold tracking-wide"
+      className="text-white text-center py-3 px-4 text-sm sm:text-base font-semibold tracking-wide"
       style={{ backgroundColor: "var(--brand)" }}
     >
       <span className="inline-flex items-center gap-2">

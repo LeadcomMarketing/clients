@@ -6,7 +6,7 @@ import CtaButton from "./CtaButton"
 
 function GoogleLogo() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img">
+    <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img">
       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
       <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
@@ -22,7 +22,7 @@ function StarRow({ rating }: { rating: number }) {
         const full = i + 1 <= Math.floor(rating)
         const half = !full && i < rating
         return (
-          <svg key={i} width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <svg key={i} width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
             <defs>
               {half && (
                 <linearGradient id={`half-${i}`}>
@@ -51,12 +51,12 @@ function NativeGoogleBadge({ rating, totalRatings }: GoogleRating) {
       <GoogleLogo />
       <div className="flex flex-col gap-0.5">
         <div className="flex items-center gap-1.5">
-          <span className="text-sm font-bold leading-none" style={{ color: "var(--foreground, #1A1714)" }}>
+          <span className="text-base font-bold leading-none" style={{ color: "var(--foreground, #1A1714)" }}>
             {rating.toFixed(1)}
           </span>
           <StarRow rating={rating} />
         </div>
-        <span className="text-[11px]" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+        <span className="text-xs" style={{ color: "var(--muted-foreground, #6B6460)" }}>
           {totalRatings.toLocaleString("sv-SE")} recensioner på Google
         </span>
       </div>
@@ -85,33 +85,33 @@ export default function HeroBanner({
                 <NativeGoogleBadge {...googleRating} />
               </div>
             ) : config.trustBadgeElfsightId ? (
-              /* Constrain Elfsight badge on mobile so it doesn't blow out the layout */
-              <div className="mb-5 self-center md:self-start max-w-[240px] sm:max-w-none overflow-hidden">
+              /* Elfsight badge */
+              <div className="mb-5 self-center md:self-start overflow-hidden">
                 <div className={`elfsight-app-${config.trustBadgeElfsightId}`} data-elfsight-app-lazy />
               </div>
             ) : config.trustBadge ? (
-              <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2 shadow-sm mb-5 self-center md:self-start" style={{ borderColor: "var(--border, #E5E0D9)" }}>
-                <span className="flex text-yellow-400 text-sm leading-none" aria-hidden="true">★★★★★</span>
-                <span className="text-xs font-semibold" style={{ color: "var(--brand)" }}>{config.trustBadge}</span>
+              <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2.5 shadow-sm mb-5 self-center md:self-start" style={{ borderColor: "var(--border, #E5E0D9)" }}>
+                <span className="flex text-yellow-400 text-base leading-none" aria-hidden="true">★★★★★</span>
+                <span className="text-sm font-semibold" style={{ color: "var(--brand)" }}>{config.trustBadge}</span>
               </div>
             ) : null}
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-[-0.02em] text-balance mb-4" style={{ color: "var(--foreground, #1A1714)" }}>
+            <h1 className="text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-[-0.02em] text-balance mb-5" style={{ color: "var(--foreground, #1A1714)" }}>
               {config.heroHeadline}
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-7 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.heroSubheadline}
             </p>
 
             {/* Price lockup */}
-            <div className="relative flex items-center flex-wrap gap-3 mb-8 self-center md:self-start">
-              <span className="text-sm sm:text-base line-through font-medium whitespace-nowrap" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <div className="relative flex items-center justify-center md:justify-start flex-wrap gap-3 mb-8 w-full md:w-auto">
+              <span className="text-base sm:text-lg line-through font-medium whitespace-nowrap" style={{ color: "var(--muted-foreground, #6B6460)" }}>
                 {config.originalPrice}
               </span>
               <div className="relative inline-block overflow-visible">
-                <span className="text-[2.25rem] sm:text-[2.75rem] font-extrabold leading-none" style={{ color: "var(--brand)" }}>
+                <span className="text-[2.75rem] sm:text-[3.25rem] font-extrabold leading-none" style={{ color: "var(--brand)" }}>
                   {config.discountedPrice}
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 130 14" fill="none" aria-hidden="true">
@@ -123,19 +123,19 @@ export default function HeroBanner({
                     stroke="var(--accent-warm)" strokeWidth="1" strokeLinecap="round" opacity="0.35" />
                 </svg>
               </div>
-              <span className="inline-flex items-center text-xs font-bold rounded-full px-3 py-1.5 border" style={{ backgroundColor: "var(--accent-warm-light, #FBF1EC)", color: "var(--accent-warm)", borderColor: "color-mix(in srgb, var(--accent-warm) 20%, transparent)" }}>
+              <span className="inline-flex items-center text-sm font-bold rounded-full px-3 py-1.5 border" style={{ backgroundColor: "var(--accent-warm-light, #FBF1EC)", color: "var(--accent-warm)", borderColor: "color-mix(in srgb, var(--accent-warm) 20%, transparent)" }}>
                 Spara {config.savings}
               </span>
             </div>
 
             {/* CTA */}
-            <div className="relative self-center md:self-start">
+            <div className="relative w-full md:w-auto text-center md:text-left">
               <CtaButton size="lg" label={config.ctaLabels?.hero || config.ctaText} />
-              <p className="text-xs mt-3 text-center md:text-left" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+              <p className="text-sm mt-3 text-center md:text-left" style={{ color: "var(--muted-foreground, #6B6460)" }}>
                 {config.ctaSubtext}
               </p>
               {config.showAtbDisclaimer && (
-                <p className="text-[11px] leading-relaxed mt-2 text-center md:text-left max-w-sm" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.7 }}>
+                <p className="text-xs leading-relaxed mt-2 text-center md:text-left max-w-sm" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.7 }}>
                   * {ATB_DISCLAIMER}
                 </p>
               )}

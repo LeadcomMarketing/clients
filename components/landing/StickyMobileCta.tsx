@@ -14,15 +14,15 @@ export default function StickyMobileCta() {
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       <div
-        className="bg-white/97 backdrop-blur-md border-t px-4 py-3 shadow-[0_-8px_32px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3"
+        className="bg-white/97 backdrop-blur-md border-t px-4 py-4 shadow-[0_-8px_32px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3"
         style={{ borderColor: "var(--border, #E5E0D9)" }}
       >
         <div className="min-w-0">
-          <p className="text-xs font-bold leading-tight truncate" style={{ color: "var(--foreground, #1A1714)" }}>
+          <p className="text-sm font-bold leading-tight truncate" style={{ color: "var(--foreground, #1A1714)" }}>
             Nytt pris:{" "}
-            <span className="text-sm" style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
+            <span className="text-base" style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
           </p>
-          <p className="text-[10px] mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+          <p className="text-xs mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
             {config.ctaSubtext}
           </p>
         </div>
