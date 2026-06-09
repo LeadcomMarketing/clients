@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import Script from "next/script"
@@ -20,6 +21,35 @@ import StickyMobileCta from "@/components/landing/StickyMobileCta"
 import BookingModal from "@/components/landing/BookingModal"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const h = await headers()
+  const host = (h.get("host") ?? "").split(":")[0]
+  const tenantSlug = getDomainsMap()[host]
+  const config = tenantSlug ? getTenant(tenantSlug) : null
+  if (!config) return {}
+
+  const title = `${config.clinicName} – Exklusivt erbjudande`
+  const description = `Boka din tandundersökning hos ${config.clinicName} i ${config.clinicCity} – nu till ett specialpris. Begränsat antal platser.`
+
+  return {
+    title,
+    description,
+    robots: { index: false, follow: false },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: "sv_SE",
+      siteName: config.clinicName,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  }
+}
 
 export default async function RootPage() {
   const h = await headers()
