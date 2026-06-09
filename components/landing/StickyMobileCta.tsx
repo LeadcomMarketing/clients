@@ -17,19 +17,19 @@ export default function StickyMobileCta() {
         className="bg-white/97 backdrop-blur-md border-t px-4 py-4 shadow-[0_-8px_32px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3"
         style={{ borderColor: "var(--border, #E5E0D9)" }}
       >
-        <div className="min-w-0">
-          <p className="text-lg font-bold leading-tight" style={{ color: "var(--foreground, #1A1714)" }}>
+        <div className="min-w-0 flex-1">
+          <p className="text-base font-bold leading-tight" style={{ color: "var(--foreground, #1A1714)" }}>
             Ditt pris idag:{" "}
-            <span className="line-through font-normal text-base" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.originalPrice}</span>{" "}
+            <span className="line-through font-normal" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.originalPrice}</span>{" "}
             <span style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
           </p>
-          <p className="text-base mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+          <p className="text-sm mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
             {config.ctaSubtext}
           </p>
         </div>
         <CtaButton
           label={config.ctaLabels?.sticky || "Boka nu →"}
-          className="flex-shrink-0 !text-sm !px-5 !py-5"
+          className="flex-shrink-0 whitespace-nowrap !text-sm !px-5 !py-4"
           hideDisclaimer
         />
       </div>

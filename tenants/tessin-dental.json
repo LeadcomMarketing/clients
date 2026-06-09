@@ -17,7 +17,7 @@
   "integrations": {
     "elfsightWidgetId": "9363e302-e9a6-4c33-979e-ae76b51ef672",
     "facebookPixelId": "1832776057452880",
-    "makeWebhookUrl": "",
+    "makeWebhookUrl": "https://hook.eu1.make.com/qjl5je7nhypqqgfea9bw1by2aw1x8r45",
     "leadForm": {
       "headline": "Boka din undersökning på Östermalm",
       "subheadline": "Fyll i dina uppgifter så kontaktar vi dig inom kort för att bekräfta din tid.",
