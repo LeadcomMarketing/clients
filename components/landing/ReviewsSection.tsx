@@ -38,7 +38,7 @@ function FallbackCards({ config }: { config: TenantConfig }) {
                 </svg>
               ))}
             </div>
-            <p className="text-base leading-relaxed flex-1" style={{ color: "var(--foreground, #1A1714)" }}>&ldquo;{review.text}&rdquo;</p>
+            <p className="text-base sm:text-lg leading-relaxed flex-1" style={{ color: "var(--foreground, #1A1714)" }}>&ldquo;{review.text}&rdquo;</p>
             <div className="flex items-center gap-3 pt-3 border-t" style={{ borderColor: "var(--border, #E5E0D9)" }}>
               <Avatar name={review.name} />
               <div className="flex-1 min-w-0">
@@ -64,7 +64,7 @@ export default function ReviewsSection({ config }: { config: TenantConfig }) {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-white border rounded-full px-4 py-2 shadow-sm mb-5" style={{ borderColor: "var(--border, #E5E0D9)" }}>
             <GoogleLogo />
-            <span className="text-sm font-semibold" style={{ color: "var(--muted-foreground, #6B6460)" }}>Verifierade Google-recensioner</span>
+            <span className="text-base font-semibold" style={{ color: "var(--muted-foreground, #6B6460)" }}>Verifierade Google-recensioner</span>
           </div>
           <h2 className="text-[2rem] sm:text-4xl md:text-[2.75rem] font-extrabold text-balance tracking-tight leading-[1.1]" style={{ color: "var(--foreground, #1A1714)" }}>
             {config.reviewsTitle}

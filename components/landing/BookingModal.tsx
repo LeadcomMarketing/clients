@@ -135,7 +135,7 @@ function LeadForm({
           <button
             type="submit"
             disabled={submitting}
-            className="w-full font-extrabold rounded-full py-4 text-base text-white transition-all disabled:opacity-60 hover:-translate-y-0.5 active:scale-[0.98]"
+            className="w-full font-extrabold rounded-full py-5 text-base text-white transition-all disabled:opacity-60 hover:-translate-y-0.5 active:scale-[0.98]"
             style={{
               backgroundColor: "var(--accent-warm)",
               boxShadow: "0 8px 28px color-mix(in srgb, var(--accent-warm) 40%, transparent)",

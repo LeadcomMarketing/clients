@@ -19,7 +19,7 @@ export default function NavBar({ config }: { config: TenantConfig }) {
           {config.clinicName}
         </span>
       )}
-      <CtaButton size="default" label={config.ctaLabels?.nav || "Boka tid →"} className="!px-4 !py-2.5 !text-sm whitespace-nowrap" hideDisclaimer />
+      <CtaButton size="default" label={config.ctaLabels?.nav || "Boka tid →"} className="!px-5 !py-3.5 !text-sm whitespace-nowrap" hideDisclaimer />
     </nav>
   )
 }

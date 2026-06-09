@@ -31,7 +31,7 @@ export default function AuthoritySection({ config }: { config: TenantConfig }) {
                   <p className="text-sm text-white/60">{config.dentistTitle}</p>
                 </div>
               </div>
-              <p className="text-base text-white/70 leading-relaxed">{config.dentistBio}</p>
+              <p className="text-base sm:text-lg text-white/70 leading-relaxed">{config.dentistBio}</p>
             </div>
 
           </div>

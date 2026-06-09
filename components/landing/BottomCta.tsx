@@ -29,7 +29,7 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
         </div>
 
         <CtaButton size="lg" label={config.ctaLabels?.bottom || config.ctaText} />
-        <p className="text-sm mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
+        <p className="text-base mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
       </div>
     </section>
   )

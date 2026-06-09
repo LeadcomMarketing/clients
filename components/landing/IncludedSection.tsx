@@ -29,7 +29,7 @@ export default function IncludedSection({ config }: { config: TenantConfig }) {
         <h2 className="text-[2rem] sm:text-4xl md:text-[2.75rem] font-extrabold text-center mb-3 text-balance tracking-tight leading-[1.1]" style={{ color: "var(--foreground, #1A1714)" }}>
           {config.includedTitle}
         </h2>
-        <p className="text-center text-base md:text-lg mb-14 max-w-md mx-auto" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+        <p className="text-center text-lg md:text-lg mb-14 max-w-md mx-auto" style={{ color: "var(--muted-foreground, #6B6460)" }}>
           Allt ingår i ett och samma besök — inga dolda avgifter, inga överraskningar.
         </p>
 
@@ -60,7 +60,7 @@ export default function IncludedSection({ config }: { config: TenantConfig }) {
                         </span>
                       )}
                     </div>
-                    <p className="text-base leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>{item.description}</p>
+                    <p className="text-base sm:text-lg leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>{item.description}</p>
                   </div>
                 </div>
               )
