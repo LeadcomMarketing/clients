@@ -15,10 +15,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tenant } = await params
   const config = getTenant(tenant)
   if (!config) return {}
+
+  const title = `${config.clinicName} – Exklusivt erbjudande`
+  const description = `Boka din tandundersökning hos ${config.clinicName} i ${config.clinicCity} – nu till ett specialpris. Begränsat antal platser.`
+
   return {
-    title: `${config.clinicName} – Komplett tandvård i ${config.clinicCity}`,
-    description: `Boka din tandundersökning med röntgenbilder, 3D-skanning och AirFlow®-behandling. Spara ${config.savings} – nu endast ${config.discountedPrice}.`,
+    title,
+    description,
     robots: { index: false, follow: false },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: "sv_SE",
+      siteName: config.clinicName,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
   }
 }
 
