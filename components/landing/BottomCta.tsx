@@ -6,7 +6,7 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
   return (
     <section className="py-14 md:py-20" style={{ backgroundColor: "var(--background)" }}>
       <div className="max-w-2xl mx-auto px-5 md:px-8 text-center">
-        <span className="inline-block text-sm font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "var(--accent-warm)" }}>
+        <span className="inline-block text-base font-bold uppercase tracking-[0.15em] mb-5" style={{ color: "var(--accent-warm)" }}>
           {config.bottomCtaSubtitle}
         </span>
         <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.25rem] font-extrabold mb-3 text-balance tracking-tight leading-[1.15]" style={{ color: "var(--foreground, #1A1714)" }}>
@@ -29,7 +29,7 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
         </div>
 
         <CtaButton size="lg" label={config.ctaLabels?.bottom || config.ctaText} />
-        <p className="text-base mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
+        <p className="text-lg mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
       </div>
     </section>
   )

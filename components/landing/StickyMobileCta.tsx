@@ -18,17 +18,17 @@ export default function StickyMobileCta() {
         style={{ borderColor: "var(--border, #E5E0D9)" }}
       >
         <div className="min-w-0">
-          <p className="text-base font-bold leading-tight truncate" style={{ color: "var(--foreground, #1A1714)" }}>
+          <p className="text-lg font-bold leading-tight truncate" style={{ color: "var(--foreground, #1A1714)" }}>
             Nytt pris:{" "}
-            <span className="text-lg" style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
+            <span className="text-xl" style={{ color: "var(--accent-warm)" }}>{config.discountedPrice}</span>
           </p>
-          <p className="text-sm mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+          <p className="text-base mt-0.5 truncate" style={{ color: "var(--muted-foreground, #6B6460)" }}>
             {config.ctaSubtext}
           </p>
         </div>
         <CtaButton
           label={config.ctaLabels?.sticky || "Boka nu →"}
-          className="flex-shrink-0 !text-sm !px-5 !py-4"
+          className="flex-shrink-0 !text-sm !px-5 !py-5"
           hideDisclaimer
         />
       </div>

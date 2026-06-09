@@ -38,15 +38,15 @@ function LeadForm({
       <div className="px-5 sm:px-7 pt-4 pb-2">
         {/* Social proof strip */}
         <div className="flex justify-center mb-4">
-          <span className="flex text-yellow-400 text-base leading-none" aria-hidden="true">★★★★★</span>
+          <span className="flex text-yellow-400 text-2xl leading-none" aria-hidden="true">★★★★★</span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-lg sm:text-xl font-extrabold text-center mb-1 leading-snug text-balance"
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-center mb-2 leading-snug text-balance"
           style={{ color: "var(--foreground, #1A1714)" }}>
           {headline}
         </h2>
-        <p className="text-xs sm:text-sm text-center mb-5 text-pretty"
+        <p className="text-base sm:text-lg text-center mb-5 text-pretty"
           style={{ color: "var(--muted-foreground, #6B6460)" }}>
           {subheadline}
         </p>
@@ -56,7 +56,7 @@ function LeadForm({
         <div className="px-5 sm:px-7 flex flex-col gap-3">
           {/* Name */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="lf-name" className="text-xs font-semibold"
+            <label htmlFor="lf-name" className="text-base font-semibold"
               style={{ color: "var(--muted-foreground, #6B6460)" }}>
               Förnamn och efternamn <span className="text-red-400">*</span>
             </label>
@@ -79,7 +79,7 @@ function LeadForm({
 
           {/* Email */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="lf-email" className="text-xs font-semibold"
+            <label htmlFor="lf-email" className="text-base font-semibold"
               style={{ color: "var(--muted-foreground, #6B6460)" }}>
               E-postadress <span className="text-red-400">*</span>
             </label>
@@ -100,7 +100,7 @@ function LeadForm({
 
           {/* Phone */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="lf-phone" className="text-xs font-semibold"
+            <label htmlFor="lf-phone" className="text-base font-semibold"
               style={{ color: "var(--muted-foreground, #6B6460)" }}>
               Mobilnummer <span className="text-red-400">*</span>
             </label>
@@ -118,7 +118,7 @@ function LeadForm({
               onFocus={e => e.currentTarget.style.borderColor = "var(--brand)"}
               onBlur={e => e.currentTarget.style.borderColor = "var(--border, #E5E0D9)"}
             />
-            <p className="text-[11px]" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.8 }}>
+            <p className="text-sm" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.8 }}>
               Vi ringer dig för att bekräfta din tid — se till att du kan svara.
             </p>
           </div>
@@ -135,7 +135,7 @@ function LeadForm({
           <button
             type="submit"
             disabled={submitting}
-            className="w-full font-extrabold rounded-full py-5 text-base text-white transition-all disabled:opacity-60 hover:-translate-y-0.5 active:scale-[0.98]"
+            className="w-full font-extrabold rounded-full py-6 text-base text-white transition-all disabled:opacity-60 hover:-translate-y-0.5 active:scale-[0.98]"
             style={{
               backgroundColor: "var(--accent-warm)",
               boxShadow: "0 8px 28px color-mix(in srgb, var(--accent-warm) 40%, transparent)",
@@ -156,12 +156,12 @@ function LeadForm({
               style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.5 }} aria-hidden="true">
               <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
-            <p className="text-[11px]" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.55 }}>
+            <p className="text-sm" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.55 }}>
               Dina uppgifter är trygga. Vi delar aldrig din information.
             </p>
           </div>
           {config.showAtbDisclaimer && (
-            <p className="text-[11px] leading-relaxed mt-2 text-center" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.6 }}>
+            <p className="text-sm leading-relaxed mt-2 text-center" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.6 }}>
               * {ATB_DISCLAIMER}
             </p>
           )}
@@ -323,11 +323,11 @@ export default function BookingModal() {
         <div className="flex items-center justify-between px-5 sm:px-7 py-3 sm:py-5 border-b flex-shrink-0"
           style={{ borderColor: "var(--border, #E5E0D9)" }}>
           <div className="flex-1 pr-3 min-w-0">
-            <p className="font-extrabold text-sm sm:text-base leading-tight truncate"
+            <p className="font-extrabold text-base sm:text-lg leading-tight truncate"
               style={{ color: "var(--foreground, #1A1714)" }}>
               {stepTitle}
             </p>
-            <p className="text-xs mt-0.5" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-sm mt-0.5" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.clinicName} · {config.discountedPrice}
             </p>
           </div>

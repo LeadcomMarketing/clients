@@ -21,17 +21,17 @@ export default function AuthoritySection({ config }: { config: TenantConfig }) {
             {/* Content */}
             <div className="md:w-3/5 p-8 md:p-12 flex flex-col justify-center">
               <div className="text-[4rem] font-serif leading-none mb-3 select-none" style={{ color: "var(--accent-warm)" }} aria-hidden="true">&ldquo;</div>
-              <blockquote className="text-xl md:text-2xl font-semibold text-white leading-snug mb-6 text-pretty">
+              <blockquote className="text-2xl md:text-3xl font-semibold text-white leading-snug mb-6 text-pretty">
                 {config.dentistQuote}
               </blockquote>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-0.5" style={{ backgroundColor: "var(--accent-warm)" }} />
                 <div>
-                  <p className="font-bold text-white text-base">{config.dentistName}</p>
-                  <p className="text-sm text-white/60">{config.dentistTitle}</p>
+                  <p className="font-bold text-white text-xl">{config.dentistName}</p>
+                  <p className="text-lg text-white/60">{config.dentistTitle}</p>
                 </div>
               </div>
-              <p className="text-base sm:text-lg text-white/70 leading-relaxed">{config.dentistBio}</p>
+              <p className="text-lg sm:text-xl text-white/70 leading-relaxed">{config.dentistBio}</p>
             </div>
 
           </div>

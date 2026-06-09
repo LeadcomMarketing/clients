@@ -101,7 +101,7 @@ export default function HeroBanner({
               {config.heroHeadline}
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-xl leading-relaxed mb-7 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-xl sm:text-2xl md:text-2xl leading-relaxed mb-7 text-pretty max-w-md" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.heroSubheadline}
             </p>
 
@@ -131,7 +131,7 @@ export default function HeroBanner({
             {/* CTA */}
             <div className="relative w-full md:w-auto text-center md:text-left">
               <CtaButton size="lg" label={config.ctaLabels?.hero || config.ctaText} />
-              <p className="text-base mt-3 text-center md:text-left" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+              <p className="text-lg mt-3 text-center md:text-left" style={{ color: "var(--muted-foreground, #6B6460)" }}>
                 {config.ctaSubtext}
               </p>
             </div>

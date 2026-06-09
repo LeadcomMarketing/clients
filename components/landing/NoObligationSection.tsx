@@ -30,7 +30,7 @@ export default function NoObligationSection({ config }: { config: TenantConfig }
             <h2 className="text-[1.75rem] sm:text-3xl md:text-[2rem] font-extrabold mb-4 text-balance tracking-tight leading-[1.15]" style={{ color: "var(--foreground, #1A1714)" }}>
               {config.noObligationTitle}
             </h2>
-            <p className="text-lg leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>
+            <p className="text-xl leading-relaxed" style={{ color: "var(--muted-foreground, #6B6460)" }}>
               {config.noObligationBody}
             </p>
           </div>

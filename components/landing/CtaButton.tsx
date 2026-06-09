@@ -26,8 +26,8 @@ export default function CtaButton({ size = "default", className, label, hideDisc
           "inline-flex items-center justify-center font-extrabold rounded-full transition-all duration-200 cursor-pointer",
           "text-white hover:-translate-y-0.5 active:scale-[0.98]",
           size === "lg"
-            ? "px-8 py-5 text-base md:text-lg w-full"
-            : "px-6 py-4 text-sm md:text-base",
+            ? "px-8 py-6 text-base md:text-lg w-full"
+            : "px-6 py-5 text-sm md:text-base",
           className
         )}
         style={{
