@@ -1,5 +1,5 @@
 import type { TenantConfig } from "@/lib/tenant-types"
-import { ATB_DISCLAIMER } from "@/lib/tenant-types"
+
 import CtaButton from "./CtaButton"
 
 export default function BottomCta({ config }: { config: TenantConfig }) {
@@ -30,11 +30,6 @@ export default function BottomCta({ config }: { config: TenantConfig }) {
 
         <CtaButton size="lg" label={config.ctaLabels?.bottom || config.ctaText} />
         <p className="text-sm mt-3" style={{ color: "var(--muted-foreground, #6B6460)" }}>{config.ctaSubtext}</p>
-        {config.showAtbDisclaimer && (
-          <p className="text-xs leading-relaxed mt-3 max-w-md mx-auto" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.7 }}>
-            * {ATB_DISCLAIMER}
-          </p>
-        )}
       </div>
     </section>
   )

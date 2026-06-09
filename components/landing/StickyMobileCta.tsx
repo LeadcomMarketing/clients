@@ -29,6 +29,7 @@ export default function StickyMobileCta() {
         <CtaButton
           label={config.ctaLabels?.sticky || "Boka nu →"}
           className="flex-shrink-0 !text-sm !px-5 !py-3"
+          hideDisclaimer
         />
       </div>
     </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useBookingModal } from "@/context/BookingModalContext"
 import { useTenantConfig } from "@/context/TenantConfigContext"
+import { ATB_DISCLAIMER } from "@/lib/tenant-types"
 
 type Step = "form" | "submitting" | "thankyou" | "embed"
 interface FormData { name: string; email: string; phone: string }
@@ -36,11 +37,8 @@ function LeadForm({
     <div className="flex-1 overflow-auto overscroll-contain">
       <div className="px-5 sm:px-7 pt-4 pb-2">
         {/* Social proof strip */}
-        <div className="flex items-center justify-center gap-1.5 mb-4">
-          <span className="flex text-yellow-400 text-xs leading-none" aria-hidden="true">★★★★★</span>
-          <span className="text-xs font-semibold" style={{ color: "var(--muted-foreground, #6B6460)" }}>
-            {config.trustBadge}
-          </span>
+        <div className="flex justify-center mb-4">
+          <span className="flex text-yellow-400 text-base leading-none" aria-hidden="true">★★★★★</span>
         </div>
 
         {/* Headline */}
@@ -162,6 +160,11 @@ function LeadForm({
               Dina uppgifter är trygga. Vi delar aldrig din information.
             </p>
           </div>
+          {config.showAtbDisclaimer && (
+            <p className="text-[11px] leading-relaxed mt-2 text-center" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.6 }}>
+              * {ATB_DISCLAIMER}
+            </p>
+          )}
         </div>
       </form>
     </div>
@@ -290,7 +293,7 @@ export default function BookingModal() {
   if (!isOpen) return null
 
   const stepTitle = step === "form"
-    ? config.integrations.leadForm.headline
+    ? config.clinicName
     : step === "embed" ? "Välj din tid" : "Anmälan mottagen"
 
   return (

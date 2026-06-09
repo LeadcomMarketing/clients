@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type { TenantConfig } from "@/lib/tenant-types"
-import { ATB_DISCLAIMER } from "@/lib/tenant-types"
+
 import type { GoogleRating } from "@/lib/google-places"
 import CtaButton from "./CtaButton"
 
@@ -134,11 +134,6 @@ export default function HeroBanner({
               <p className="text-sm mt-3 text-center md:text-left" style={{ color: "var(--muted-foreground, #6B6460)" }}>
                 {config.ctaSubtext}
               </p>
-              {config.showAtbDisclaimer && (
-                <p className="text-xs leading-relaxed mt-2 text-center md:text-left max-w-sm" style={{ color: "var(--muted-foreground, #6B6460)", opacity: 0.7 }}>
-                  * {ATB_DISCLAIMER}
-                </p>
-              )}
             </div>
           </div>
 
